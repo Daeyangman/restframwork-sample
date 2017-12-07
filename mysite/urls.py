@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^sample/', include('maestro.urls', namespace = 'maestro')),
     url(r'^ep03/' , include('ep03.urls', namespace= 'ep03')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 ]

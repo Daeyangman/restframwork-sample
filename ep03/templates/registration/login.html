@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Page title -->
+    <title>Maestro</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load staticfiles %}
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+</head>
+<body>
+
+<!-- Preloader -->
+<!--<div id="preloader">-->
+    <!--<div class="loader"></div>-->
+<!--</div>-->
+<!-- /Preloader -->
+
+<!-- Header -->
+<header id="home" class="header">
+
+    <div id="carousel-home" class="slider owl-carousel owl-theme">
+        <!-- Slide -->
+        <div class="item mask mask-black" style="background: url(/static/images/6.jpeg) ; no-repeat center top / cover; margin:0px 10px 0px 0px;" data-stellar-background-ratio="0.4">
+            <div class="full-wh relative" data-stellar-ratio="0.5">
+                <div class="container" >
+                    <div class="col-md-6 col-md-offset-2 relative">
+                        {% if user.is_active %}
+                        <h1 class = 'aniamted fadeInDown wow' data-wow-delay = "0.2s" style="font-size: 25px;color: #c9c9c9; "> Welcome<br><br> <strong style = "color : white;">{{user.username}}</strong> <br><br>You are good people </h1>
+                        <a href="{% url 'logout' %}" style="font-size: 15px;color: #c0d6e4; ">로그아웃</a>
+                        <div class="subtitle animated fadeInUp wow" data-wow-duration="0.9s" data-wow-delay="0.5s">
+                          {% else %}
+                          {% if form.errors %}
+                          <p>ID나 비밀번호가 일치하지 않습니다.</p>
+                          {% endif %}
+                          <div class="animated fadeInUp wow" data-wow-delay="0.2s">
+                              <form method="post" action="{% url 'login' %}">
+                              <h1 class = 'aniamted fadeInDown wow' data-wow-delay = "0.2s"> Maestro Login</h1>
+                              {% csrf_token %}
+                              {% for error in form.non_field_errors %}
+                                    <div class="form-group has-errors text-danger small">
+                                        {{error}}
+                                    </div>
+                                    {% endfor %}
+                                    {% for field in form %}
+                                    <div class="form-group has-errors text-danger small">
+                                        {{field.errors}}
+                                    </div>
+                                    <div class="form-group has-errors text-danger small">
+                                    </div>
+                                    <div class="form-group">
+                                        {{field}}
+                                    </div>
+                                    {% endfor %}
+                                    <button class="btn" style="background-color:gray;width:33.5%">Login</button>
+                                    <br><br>
+                                     <label>
+                                         <input type="checkbox">Remember me
+                                     </label>
+                                  </form>
+
+                              <br>
+
+
+                          {% endif %}
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Slide -->
+
+        <!-- Slide -->
+
+
+        <!-- /Slide -->
+
+    </div>
+    <!-- /Slider -->
+    </div>
+</header>
+<!-- /Header -->
+</body>
+<!-- /Modal: Result Message -->
+
+<!-- SCRIPTS -->
+<script src="{% static 'js/jquery-2.2.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<script src="{% static 'js/general.js' %}"></script>
+<!-- /SCRIPTS -->
+
+
+</html>
